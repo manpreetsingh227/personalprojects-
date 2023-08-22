@@ -1,1 +1,24 @@
+cooperate = 0
+cheat = 1
+def always_cheat(history):
+    return cheat
+    
+def always_cooperate(history):
+    """
+    Imput:  history,a list with elements 0 and 1 only. It is a list of the choices the oppornent has made so far (does not include the game they are now   playing)
+    Output: Number 0, the choice that "always_cooperate" will make for the game they are now playing. 
+    """
+    return cooperate
+    
+def tit_for_tat(history):
+    """
+    Imput:  history,a list with elements 0 and 1 only. It is a list of the choices the oppornent has made so far (does not include the game they are now  playing)
+    Output: Number 0 or 1. The choice that "tit_for_tat" will make for the game they are now playing. Number 0 for cooperate and 1 for cheat.
+    """
+    if len(history) == 0:
+        return cooperate
+    return history[-1]
+ 
+import random
 
+def random_choice(history):
