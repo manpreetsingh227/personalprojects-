@@ -112,5 +112,8 @@ def tournament(player_list):
                                                                  # because of the way we recorded the score above.
                                                                  # score[i] = rough_score[i][2*(j-i-1)] + score[i]
             else:                    #else represented the situation that i = j.
+                score[i] = score[i]  #since i could not play with itself, when i=j, score[i] does not change.
+    return score                     # after going through every player in the player_list, we can find out the final score list for a player_list.
+    
 
 
