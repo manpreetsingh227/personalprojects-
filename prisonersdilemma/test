@@ -22,3 +22,25 @@ def tit_for_tat(history):
 import random
 
 def random_choice(history):
+"""
+    Imput:  history,a list with elements 0 and 1 only. It is a list of the choices the oppornent has made so far (does not include the game they are now playing)
+    Output: Number 0 or 1. The choice that "ramdom_choice" will make for the game they are now playing. Number 0 for cooperate and 1 for cheat.
+    """
+    return random.choice([cooperate,cheat])
+
+        
+def grudge(history):
+    """
+    Imput:  history,a list with elements 0 and 1 only. It is a list of the choices the oppornent has made so far (does not include the game they are now playing)
+    Output: Number 0 or 1. The choice that "grudge" will make for the game they are now playing. Number 0 for cooperate and 1 for cheat.
+    """
+    if history == [0 for i in range(len(history))]: #if the opponent never cheat before, cooperate
+                                                    #since cooperate = 0, if the history is a list of all 0, cooperate.
+                                                    #so if history == [0 for i in range(len(history))], return cooperate
+        return cooperate
+    return cheat                                    #the opponent can only cheat or cooperate, so for "else", we return cheat
+    
+    
+    
+ # defining a function to play n games betweeen two players
+ 
