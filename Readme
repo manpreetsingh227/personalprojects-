@@ -1,8 +1,0 @@
-Prisoner's Dilemma
-
-This project is about a simple two-player game. In the game each player has only two choices: they can cooperate or cheat. They choose secretly, so they do not know what their opponent will do. Each player gets a score (or "payoff") as follows:
-
-if both players cheat, they both get 0 points
-if both players cooperate, they both get 2 points
-if one player cooperates and one player cheats, the one who cheats gets 3 points and the one who cooperates gets -1 points.
-The game is played several times and whoever has the most points at the end is the winner.
