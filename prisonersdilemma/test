@@ -76,5 +76,41 @@ def grudge(history):
             score1 = score1 - 1
             score2 = score2 + 3
     return (score1, score2)
+def tournament(player_list):
+    """
+    Input:  player_list, a list of function representing the players. These function are sopposed to have output with 0 or 1. 0 for cooperate and 1 for  cheat.
+    Output: a list of numbers with length equals to the imput list. The ith element in the output list is the total score of player_list[i] after every player play every other player exactly 10 times.
+    """
+    score = [0 for i in range(len(player_list))] #the initial score for each player in the player_list, i.e. 0.
+    rough_score = {} # rough_score is a dictionary. 
+                     # rough_score.keys = [i in range(len(player_list))]
+                     # rough_score[i] = the sum of the tuple of play_n_games(player_list[i],player_list[j]) with i<j<len(player_list).
+                     # then rough_score records the score of every game in some order.
+                     # this is because we only let the player play with player after itself in the player_list,and this method avoid repetition.
+    for i in range(len(player_list)): # so we use for loop to go through every player in the player_list
+        score1 = ()                   # score1 represents the turple of rough_score[i].
+                                      # before adding up the tuple of scores, the tuple is empty, so score1 = ()
+        for j in range(i+1,len(player_list)): # to go through every player after playeri(elements in range(i+1,len(player_list)) of the player_list)
+                                              # we use another for loop: for j in range(i+1,len(player_list))
+            score1 = score1 + play_n_games(player_list[i],player_list[j],10) # so the tuples are added up when going through the for loop of j
+        rough_score[i] = score1 # rough_score[i] will be finded then because it is equal to score1 after the for loop of j.
+                                # after going through every i, we get the value we want for each key in the dictionary rough_score.
+
+    for i in range(len(player_list)):      # to find the total score of each player in the player_list, we go through each player by a for loop:
+                                           # for i in range(len(player_list))
+        for j in range(len(player_list)):  # each player it need to play with player other then itself in player_list 
+                                           # "for j in range(len(player_list))" means that we let every playerj play with playeri
+                                           #and try to record the total score of playeri
+            if j < i:                                            # "if j < i" means that "if the position of playerj is before that of playeri in the list"
+                score[i] = rough_score[j][2*(i-j)-1] + score[i]  # the score of playeri for the game it plays with playerj is then recorded at
+                                                                 # rough_score[j] and it is the (2*(i-j)-1)th element of the tuple rough_score[j]
+                                                                 # because of the way we recorded the score above.
+                                                                 # so score[i] = rough_score[j][2*(i-j)-1] + score[i]
+            if j > i:                                            # "if j > i" means that "if the position of playerj is before that of playeri"
+                score[i] = rough_score[i][2*(j-i-1)] + score[i]  # the score of playeri for the game it plays with playerj is then recorded at
+                                                                 # rough_score[i] and it is the (2*(j-i-1))th element of the tuple rough_score[j]
+                                                                 # because of the way we recorded the score above.
+                                                                 # score[i] = rough_score[i][2*(j-i-1)] + score[i]
+            else:                    #else represented the situation that i = j.
 
 
